@@ -46,7 +46,7 @@ button{cursor:pointer}
 .btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
 svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
 /* cover */
-.cover{position:relative;height:600px;height:clamp(520px,82svh,700px);overflow:hidden}
+.cover{position:relative;height:600px;height:clamp(560px,160vw,700px);overflow:hidden;contain:paint}
 .cover img{width:100%;height:100%;object-fit:cover;object-position:62% 40%}
 .cover::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;background:linear-gradient(to top,rgba(28,24,20,.62),rgba(28,24,20,0))}
 .cover p{position:absolute;left:0;right:0;bottom:44px;z-index:1;text-align:center;font:46px/1.1 'Pinyon Script',cursive;color:#fff}
@@ -72,7 +72,7 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 /* parents contact sheet */
 .sheet{position:fixed;inset:0;z-index:10;display:flex;align-items:flex-end;justify-content:center;background:rgba(28,24,20,.45)}
 .sheet[hidden]{display:none}
-.sheet .box{width:100%;max-width:430px;max-height:85vh;overflow:auto;background:var(--bg);border-radius:18px 18px 0 0;padding:18px 20px 32px}
+.sheet .box{width:100%;max-width:430px;max-height:85vh;max-height:85svh;overflow:auto;background:var(--bg);border-radius:18px 18px 0 0;padding:18px 20px 32px}
 .sheet .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .sheet h3{margin:0;font-size:18px;font-weight:400}
 .x{width:44px;height:44px;margin-right:-10px;border:0;background:none;color:var(--ink);display:flex;align-items:center;justify-content:center}
@@ -84,9 +84,9 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 @keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
 .sheet:not([hidden]) .box{animation:up .25s ease}
 @media (prefers-reduced-motion:reduce){.sheet .box{animation:none!important}}
-.sheet .box.tall{height:82vh}
+.sheet .box.tall{height:82vh;height:82svh}
 /* bgm */
-.bgm{position:fixed;top:14px;right:max(14px,calc(50% - 201px));z-index:8;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.14);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.bgm{position:fixed;top:14px;right:max(14px,calc(50% - 201px));z-index:8;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(0,0,0,.14);color:var(--ink);display:flex;align-items:center;justify-content:center}
 .bgm .on,.bgm[aria-pressed=true] .off{display:none}
 .bgm[aria-pressed=true] .on{display:block}
 /* guestbook */
@@ -187,8 +187,8 @@ details[open] summary svg{transform:rotate(180deg)}
 footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',serif;letter-spacing:.24em;color:var(--mute)}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);background:rgba(40,36,32,.92);color:#fff;font-size:14px;padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap;z-index:20}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
-.js .rv.in{opacity:1;transform:none}
+.js .rv{opacity:0;transition:opacity .6s ease}
+.js .rv.in{opacity:1}
 @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
@@ -196,7 +196,7 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <main>
 
 <section class="cover">
-<img src="img/p1.jpg" alt="창가에 나란히 앉아 서로를 바라보는 성철과 주희">
+<img decoding="async" src="img/p1.jpg" alt="창가에 나란히 앉아 서로를 바라보는 성철과 주희">
 <p>We're getting<br>married</p>
 </section>
 
@@ -214,7 +214,7 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 </section>
 
 <section class="sec c couple rv" style="padding-top:0">
-<img src="img/p4.jpg" alt="아치 벽 앞에서 서로를 바라보며 웃는 성철과 주희" loading="lazy">
+<img decoding="async" src="img/p4.jpg" alt="아치 벽 앞에서 서로를 바라보며 웃는 성철과 주희" loading="lazy">
 <div class="pcard">
 <div><p class="role">신랑</p><p class="who">위성철</p><p class="par">위명환 · 김매자<br>의 아들</p>
 <div class="ico"><a href="#" data-tel="groom" aria-label="신랑 위성철에게 전화하기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a><a href="#" data-sms="groom" aria-label="신랑 위성철에게 문자 보내기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg></a></div></div>
@@ -272,12 +272,12 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 
 <section class="sec gal alt rv">
 <div class="h"><p class="eyebrow">Gallery</p><h2>우리의 순간</h2></div>
-<div class="stage"><img id="main" src="img/p1.jpg" alt="창가에 나란히 앉은 두 사람" style="object-position:62% 45%" loading="lazy"></div>
+<div class="stage"><img decoding="async" id="main" src="img/p1.jpg" alt="창가에 나란히 앉은 두 사람" style="object-position:62% 45%" loading="lazy"></div>
 <div class="thumbs" id="thumbs">
-<button type="button" aria-pressed="true" aria-label="1번째 사진 보기" data-src="img/p1.jpg" data-pos="62% 45%" data-alt="창가에 나란히 앉은 두 사람"><img src="img/p1.jpg" alt="" style="object-position:62% 45%" loading="lazy"></button>
-<button type="button" aria-pressed="false" aria-label="2번째 사진 보기" data-src="img/p3.jpg" data-pos="52% 50%" data-alt="흰 문 앞에서 손을 잡은 두 사람"><img src="img/p3.jpg" alt="" loading="lazy"></button>
-<button type="button" aria-pressed="false" aria-label="3번째 사진 보기" data-src="img/p2.jpg" data-pos="50% 35%" data-alt="꽃 사이에서 웃는 두 사람"><img src="img/p2.jpg" alt="" style="object-position:50% 35%" loading="lazy"></button>
-<button type="button" aria-pressed="false" aria-label="4번째 사진 보기" data-src="img/p4.jpg" data-pos="55% 40%" data-alt="아치 앞에서 마주 보는 두 사람"><img src="img/p4.jpg" alt="" loading="lazy"></button>
+<button type="button" aria-pressed="true" aria-label="1번째 사진 보기" data-src="img/p1.jpg" data-pos="62% 45%" data-alt="창가에 나란히 앉은 두 사람"><img decoding="async" src="img/p1.jpg" alt="" style="object-position:62% 45%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="2번째 사진 보기" data-src="img/p3.jpg" data-pos="52% 50%" data-alt="흰 문 앞에서 손을 잡은 두 사람"><img decoding="async" src="img/p3.jpg" alt="" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="3번째 사진 보기" data-src="img/p2.jpg" data-pos="50% 35%" data-alt="꽃 사이에서 웃는 두 사람"><img decoding="async" src="img/p2.jpg" alt="" style="object-position:50% 35%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="4번째 사진 보기" data-src="img/p4.jpg" data-pos="55% 40%" data-alt="아치 앞에서 마주 보는 두 사람"><img decoding="async" src="img/p4.jpg" alt="" loading="lazy"></button>
 </div>
 <p class="count" id="count">1 / 4</p>
 </section>
@@ -308,7 +308,7 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 </section>
 
 <section class="end">
-<img src="img/p3.jpg" alt="흰 문 앞에서 손을 잡고 웃는 성철과 주희" loading="lazy">
+<img decoding="async" src="img/p3.jpg" alt="흰 문 앞에서 손을 잡고 웃는 성철과 주희" loading="lazy">
 <div class="sec c" style="padding:56px 24px 24px;gap:18px">
 <p class="ty">Thank you</p>
 <p class="lead">저희의 시작을 함께해 주시는<br>모든 분들께 진심으로 감사드립니다.</p>
