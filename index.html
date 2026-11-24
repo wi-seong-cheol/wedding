@@ -138,7 +138,9 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .days .on b{width:36px;height:36px;border-radius:50%;background:var(--ac);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:400}
 .dday b{color:var(--ac)}
 /* location */
-.map{position:relative;display:block;height:220px;border-radius:12px;overflow:hidden;background-color:#ECE6DB;background-image:linear-gradient(#E3DBCD 1px,transparent 1px),linear-gradient(90deg,#E3DBCD 1px,transparent 1px);background-size:26px 26px;text-decoration:none;color:var(--ink)}
+.map{position:relative;display:block;height:240px;border-radius:12px;overflow:hidden;background-color:#ECE6DB;background-image:linear-gradient(#E3DBCD 1px,transparent 1px),linear-gradient(90deg,#E3DBCD 1px,transparent 1px);background-size:26px 26px;text-decoration:none;color:var(--ink)}
+.map.live{background-image:none}
+.map-label{padding:6px 12px;border-radius:999px;background:#fff;color:var(--ink);font:13px/1.2 'Gowun Batang',serif;box-shadow:0 2px 6px rgba(0,0,0,.15);white-space:nowrap;transform:translateY(-46px)}
 .map .r1{position:absolute;left:0;right:0;top:58%;height:16px;background:#fff}
 .map .r2{position:absolute;top:0;bottom:0;left:44%;width:12px;background:#fff}
 .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-78%);display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ac)}
@@ -161,7 +163,7 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .gal .stage{padding:0 24px}
 .gal .stage img{width:100%;height:440px;object-fit:cover;border-radius:4px;transition:opacity .25s}
 .thumbs{padding:0 24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.thumbs button{height:84px;padding:0;border:0;background:none;opacity:.45;transition:opacity .2s}
+.thumbs button{height:76px;padding:0;border:0;background:none;opacity:.45;transition:opacity .2s}
 .thumbs button[aria-pressed=true]{opacity:1}
 .thumbs img{width:100%;height:100%;object-fit:cover;border-radius:4px}
 .count{text-align:center;font:500 14px 'Cormorant Garamond',serif;letter-spacing:.2em;color:var(--mute)}
@@ -245,10 +247,10 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <section class="sec rv">
 <div class="h"><p class="eyebrow">Location</p><h2>오시는 길</h2></div>
 <div class="h"><p style="font-size:17px">상록아트홀 L층 그랜드볼룸</p><p class="mute" style="font-size:14px">서울 강남구 언주로 508 (역삼동 701)</p></div>
-<a class="map" href="https://map.naver.com/p/search/%EC%83%81%EB%A1%9D%EC%95%84%ED%8A%B8%ED%99%80" aria-label="네이버지도에서 상록아트홀 위치 보기">
+<div class="map" id="mapBox" role="img" aria-label="상록아트홀 위치 지도">
 <span class="r1"></span><span class="r2"></span>
 <span class="pin"><span>상록아트홀</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-</a>
+</div>
 <div class="nav3">
 <a class="btn" href="https://map.naver.com/p/search/%EC%83%81%EB%A1%9D%EC%95%84%ED%8A%B8%ED%99%80">네이버지도</a>
 <a class="btn" href="https://map.kakao.com/link/search/%EC%83%81%EB%A1%9D%EC%95%84%ED%8A%B8%ED%99%80">카카오맵</a>
@@ -267,19 +269,23 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <button type="button" role="tab" id="t1" aria-controls="p1" aria-selected="false">식사 안내</button>
 </div>
 <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0">건물 내 주차장을 이용하실 수 있습니다.<br>하객분들은 <b style="font-weight:700">1시간 30분 무료</b>이며,<br>이후 30분당 1,700원이 부과됩니다.</div>
-<div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>예식 후 [연회장 위치 입력]에서<br>식사가 준비되어 있습니다.<br>편안히 드시고 가시길 바랍니다.</div>
+<div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>예식 후 그랜드볼룸 옆 연회장에서<br>식사가 준비되어 있습니다.<br>편안히 드시고 가시길 바랍니다.</div>
 </section>
 
 <section class="sec gal alt rv">
 <div class="h"><p class="eyebrow">Gallery</p><h2>우리의 순간</h2></div>
 <div class="stage"><img decoding="async" id="main" src="img/p1.jpg" alt="창가에 나란히 앉은 두 사람" style="object-position:62% 45%" loading="lazy"></div>
 <div class="thumbs" id="thumbs">
-<button type="button" aria-pressed="true" aria-label="1번째 사진 보기" data-src="img/p1.jpg" data-pos="62% 45%" data-alt="창가에 나란히 앉은 두 사람"><img decoding="async" src="img/p1.jpg" alt="" style="object-position:62% 45%" loading="lazy"></button>
-<button type="button" aria-pressed="false" aria-label="2번째 사진 보기" data-src="img/p3.jpg" data-pos="52% 50%" data-alt="흰 문 앞에서 손을 잡은 두 사람"><img decoding="async" src="img/p3.jpg" alt="" loading="lazy"></button>
-<button type="button" aria-pressed="false" aria-label="3번째 사진 보기" data-src="img/p2.jpg" data-pos="50% 35%" data-alt="꽃 사이에서 웃는 두 사람"><img decoding="async" src="img/p2.jpg" alt="" style="object-position:50% 35%" loading="lazy"></button>
-<button type="button" aria-pressed="false" aria-label="4번째 사진 보기" data-src="img/p4.jpg" data-pos="55% 40%" data-alt="아치 앞에서 마주 보는 두 사람"><img decoding="async" src="img/p4.jpg" alt="" loading="lazy"></button>
+<button type="button" aria-pressed="true" aria-label="1번째 사진 보기" data-src="img/p1.jpg" data-pos="62% 45%" data-alt="창가에 나란히 앉은 두 사람"><img decoding="async" src="img/t/p1.jpg" alt="" style="object-position:62% 45%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="2번째 사진 보기" data-src="img/p3.jpg" data-pos="52% 50%" data-alt="흰 문 앞에서 손을 잡은 두 사람"><img decoding="async" src="img/t/p3.jpg" alt="" style="object-position:52% 50%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="3번째 사진 보기" data-src="img/p2.jpg" data-pos="50% 35%" data-alt="꽃 사이에서 웃는 두 사람"><img decoding="async" src="img/t/p2.jpg" alt="" style="object-position:50% 35%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="4번째 사진 보기" data-src="img/p4.jpg" data-pos="55% 40%" data-alt="아치 앞에서 마주 보는 두 사람"><img decoding="async" src="img/t/p4.jpg" alt="" style="object-position:55% 40%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="5번째 사진 보기" data-src="img/p5.jpg" data-pos="50% 30%" data-alt="창가에서 손을 잡고 마주 보는 두 사람"><img decoding="async" src="img/t/p5.jpg" alt="" style="object-position:50% 30%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="6번째 사진 보기" data-src="img/p6.jpg" data-pos="48% 45%" data-alt="아치 복도에서 웃는 두 사람"><img decoding="async" src="img/t/p6.jpg" alt="" style="object-position:48% 45%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="7번째 사진 보기" data-src="img/p7.jpg" data-pos="45% 55%" data-alt="베일 아래에서 마주 앉은 두 사람"><img decoding="async" src="img/t/p7.jpg" alt="" style="object-position:45% 55%" loading="lazy"></button>
+<button type="button" aria-pressed="false" aria-label="8번째 사진 보기" data-src="img/p8.jpg" data-pos="62% 40%" data-alt="아치 앞에서 입맞추는 두 사람"><img decoding="async" src="img/t/p8.jpg" alt="" style="object-position:62% 40%" loading="lazy"></button>
 </div>
-<p class="count" id="count">1 / 4</p>
+<p class="count" id="count">1 / 8</p>
 </section>
 
 <section class="sec rv">
@@ -624,6 +630,32 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
       gbSubmit.disabled = false; gbSubmit.textContent = '등록하기';
     }
   });
+
+  /* venue map: Kakao Maps JavaScript SDK (needs a JavaScript key with https://wedding.valuecatch.kr registered) */
+  const KAKAO_JS_KEY = '';
+  const VENUE = { name: '상록아트홀', address: '서울 강남구 언주로 508' };
+  const mapBox = document.getElementById('mapBox');
+  const drawMap = () => {
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(VENUE.address, (res, status) => {
+      if (status !== kakao.maps.services.Status.OK || !res.length) return;
+      const pos = new kakao.maps.LatLng(res[0].y, res[0].x);
+      mapBox.replaceChildren(); mapBox.classList.add('live');
+      const map = new kakao.maps.Map(mapBox, { center: pos, level: 3, draggable: false, scrollwheel: false, disableDoubleClickZoom: true });
+      map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
+      new kakao.maps.Marker({ map, position: pos });
+      const label = document.createElement('div'); label.className = 'map-label'; label.textContent = VENUE.name;
+      new kakao.maps.CustomOverlay({ map, position: pos, content: label, yAnchor: 1 });
+      const recenter = () => map.setCenter(pos);
+      window.addEventListener('resize', () => { map.relayout(); recenter(); });
+    });
+  };
+  if (KAKAO_JS_KEY) {
+    const sdk = document.createElement('script');
+    sdk.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + encodeURIComponent(KAKAO_JS_KEY) + '&autoload=false&libraries=services';
+    sdk.onload = () => kakao.maps.load(drawMap);
+    document.head.appendChild(sdk);
+  }
 
   /* bgm: starts on the first tap (browsers block autoplay with sound) */
   const bgm = new Audio('audio/bgm.mp3?v=2');
