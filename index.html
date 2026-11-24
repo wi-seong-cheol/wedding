@@ -103,6 +103,23 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .gb-form .btn{margin-top:10px}
 .gb-count{text-align:right;font-size:12.5px;color:var(--mute)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+/* rsvp */
+.rsvp fieldset{border:0;padding:0;margin:10px 0 0;min-width:0}
+.rsvp legend{font-size:13px;color:var(--mute);padding:0;margin-bottom:8px}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opts.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gb-form .opts label{margin:0;position:relative}
+.opts input{position:absolute;opacity:0;width:1px;height:1px}
+.opts span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid var(--bd);border-radius:8px;background:#fff;color:var(--ink);font-size:15px;cursor:pointer}
+.opts input:checked+span{background:var(--ac);border-color:var(--ac);color:#fff}
+.opts input:focus-visible+span{outline:2px solid var(--ac);outline-offset:2px}
+.stepper{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:8px}
+.stepper button{min-height:46px;border:1px solid var(--bd);border-radius:8px;background:#fff;font-size:20px;color:var(--ink)}
+.gb-form .stepper input{text-align:center}
+.gb-form .agree{display:flex;align-items:center;gap:10px;margin-top:16px;color:var(--ink);font-size:14.5px}
+.gb-form .agree input{width:20px;height:20px;padding:0;accent-color:var(--ac);flex:none}
+.fine{font-size:12.5px;line-height:1.6;color:var(--mute)}
+.rsvp-done{font-size:14px;color:var(--ac)}
 /* calendar */
 .cal{width:100%;background:#fff;border-radius:12px;padding:24px 14px 18px;display:flex;flex-direction:column;gap:14px}
 .cal .m{font:500 20px 'Cormorant Garamond',serif;letter-spacing:.12em;color:var(--ac)}
@@ -279,7 +296,8 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <div class="h"><p class="eyebrow">R.S.V.P</p><h2>참석 의사 전달</h2></div>
 <p class="mute" style="font-size:14.5px;line-height:1.85">귀한 걸음 해주시는 분들을 정성껏 모시고자 합니다.<br>참석 여부를 미리 알려주시면<br>준비에 큰 도움이 됩니다.</p>
 <div class="info"><p><em>일시</em>2027년 2월 20일 토요일 오전 10시 40분</p><p><em>장소</em>상록아트홀 L층 그랜드볼룸</p></div>
-<button class="btn fill" type="button" data-toast="참석 의사 전달은 정식 청첩장에서 열립니다">참석 의사 전달하기</button>
+<button class="btn fill" type="button" id="rsvpBtn" aria-haspopup="dialog">참석 의사 전달하기</button>
+<p class="rsvp-done" id="rsvpDone" hidden>참석 의사를 전달해 주셔서 감사합니다. 바뀌면 다시 보내주세요.</p>
 </section>
 
 <section class="sec rv" style="gap:20px">
@@ -311,6 +329,34 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <p class="side">신부측 혼주</p>
 <div class="prow"><div><span class="n"><em>아버지</em>남기영</span><span class="t" data-phone="brideFather"></span></div><div class="ico"><a href="#" data-tel="brideFather" aria-label="신부 아버지 남기영에게 전화하기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a><a href="#" data-sms="brideFather" aria-label="신부 아버지 남기영에게 문자 보내기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg></a></div></div>
 <div class="prow"><div><span class="n"><em>어머니</em>허경아</span><span class="t" data-phone="brideMother"></span></div><div class="ico"><a href="#" data-tel="brideMother" aria-label="신부 어머니 허경아에게 전화하기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a><a href="#" data-sms="brideMother" aria-label="신부 어머니 허경아에게 문자 보내기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg></a></div></div>
+</div>
+</div>
+<div class="sheet" id="rsvpSheet" hidden>
+<div class="box" role="dialog" aria-modal="true" aria-labelledby="rsvpT">
+<div class="top"><h3 id="rsvpT">참석 의사 전달</h3><button class="x" type="button" data-close aria-label="닫기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+<form class="gb-form rsvp" id="rsvpForm" novalidate>
+<fieldset><legend>어느 쪽 하객이신가요?</legend>
+<div class="opts"><label><input type="radio" name="side" value="groom"><span>신랑측</span></label><label><input type="radio" name="side" value="bride"><span>신부측</span></label></div>
+</fieldset>
+<fieldset><legend>참석 여부</legend>
+<div class="opts"><label><input type="radio" name="attend" value="yes"><span>참석</span></label><label><input type="radio" name="attend" value="no"><span>불참</span></label></div>
+</fieldset>
+<label for="rsvpName">성함</label>
+<input id="rsvpName" maxlength="20" autocomplete="name" required>
+<div id="rsvpMore">
+<label for="rsvpCount" style="display:block;margin-top:14px;margin-bottom:8px">참석 인원 (본인 포함)</label>
+<div class="stepper"><button type="button" id="cntMinus" aria-label="인원 줄이기">−</button><input id="rsvpCount" type="number" inputmode="numeric" min="1" max="10" value="1"><button type="button" id="cntPlus" aria-label="인원 늘리기">+</button></div>
+<fieldset><legend>식사 여부</legend>
+<div class="opts three"><label><input type="radio" name="meal" value="yes"><span>식사 예정</span></label><label><input type="radio" name="meal" value="no"><span>안 함</span></label><label><input type="radio" name="meal" value="maybe" checked><span>미정</span></label></div>
+</fieldset>
+</div>
+<label for="rsvpNote">남기실 말씀 (선택)</label>
+<input id="rsvpNote" maxlength="100" placeholder="예: 아이 1명과 함께 가요">
+<label class="agree"><input type="checkbox" id="rsvpAgree"><span>개인정보 수집·이용에 동의합니다 (필수)</span></label>
+<p class="fine">수집 항목: 성함, 참석 정보 · 목적: 예식 인원 확인 · 보관: 예식 후 파기</p>
+<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="btn fill" type="submit" id="rsvpSubmit">전달하기</button>
+</form>
 </div>
 </div>
 <div class="sheet" id="gbWriteSheet" hidden>
@@ -464,6 +510,58 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
     applyInfo(null, '잠시 후 다시 확인해 주세요');
   };
   loadGb();
+  /* rsvp */
+  const rsvpBtn = document.getElementById('rsvpBtn');
+  const rsvpSheet = document.getElementById('rsvpSheet');
+  const rsvpForm = document.getElementById('rsvpForm');
+  const rsvpMore = document.getElementById('rsvpMore');
+  const rsvpCount = document.getElementById('rsvpCount');
+  const rsvpSubmit = document.getElementById('rsvpSubmit');
+  const rsvpDone = document.getElementById('rsvpDone');
+  const picked = (n) => { const el = rsvpForm.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; };
+  const clampCount = (v) => Math.max(1, Math.min(10, parseInt(v, 10) || 1));
+  const markDone = () => { rsvpDone.hidden = false; rsvpBtn.textContent = '참석 의사 다시 전달하기'; };
+  try { if (localStorage.getItem('rsvpDone')) markDone(); } catch (e) {}
+  rsvpForm.addEventListener('change', () => { rsvpMore.hidden = picked('attend') === 'no'; });
+  document.getElementById('cntMinus').addEventListener('click', () => { rsvpCount.value = clampCount(rsvpCount.value) - 1 || 1; });
+  document.getElementById('cntPlus').addEventListener('click', () => { rsvpCount.value = Math.min(10, clampCount(rsvpCount.value) + 1); });
+  rsvpCount.addEventListener('blur', () => { rsvpCount.value = clampCount(rsvpCount.value); });
+  rsvpBtn.addEventListener('click', () => {
+    if (!API_URL) { toast('참석 의사 전달을 준비 중이에요'); return; }
+    openSheet(rsvpSheet, rsvpBtn);
+  });
+  rsvpForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const side = picked('side'), attend = picked('attend');
+    const name = document.getElementById('rsvpName').value.trim();
+    if (!side) { toast('신랑측·신부측을 골라 주세요'); return; }
+    if (!attend) { toast('참석 여부를 골라 주세요'); return; }
+    if (!name) { toast('성함을 입력해 주세요'); return; }
+    if (!document.getElementById('rsvpAgree').checked) { toast('개인정보 수집·이용에 동의해 주세요'); return; }
+    let last = 0; try { last = Number(localStorage.getItem('rsvpLast')) || 0; } catch (err) {}
+    if (Date.now() - last < 10000) { toast('잠시 후 다시 보내 주세요'); return; }
+    const payload = {
+      type: 'rsvp', side, attend, name, agree: true,
+      count: attend === 'yes' ? clampCount(rsvpCount.value) : 0,
+      meal: attend === 'yes' ? (picked('meal') || 'maybe') : '',
+      note: document.getElementById('rsvpNote').value.trim(),
+      website: rsvpForm.elements.website.value
+    };
+    rsvpSubmit.disabled = true; rsvpSubmit.textContent = '보내는 중…';
+    try {
+      const r = await fetch(API_URL, { method: 'POST', body: JSON.stringify(payload) });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'failed');
+      try { localStorage.setItem('rsvpLast', String(Date.now())); localStorage.setItem('rsvpDone', '1'); } catch (err) {}
+      closeSheet(rsvpSheet); markDone();
+      toast(attend === 'yes' ? '참석 의사를 전달했어요. 그날 뵙겠습니다' : '마음 전해 주셔서 감사합니다');
+    } catch (err) {
+      toast('전달하지 못했어요. 잠시 후 다시 시도해 주세요');
+    } finally {
+      rsvpSubmit.disabled = false; rsvpSubmit.textContent = '전달하기';
+    }
+  });
+
   document.getElementById('gbWrite').addEventListener('click', (e) => {
     if (!API_URL) { toast('방명록을 준비 중이에요. 잠시 후 다시 찾아와 주세요'); return; }
     openSheet(gbWriteSheet, e.currentTarget);
@@ -484,7 +582,7 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
     if (Date.now() - last < 30000) { toast('잠시 후 다시 남겨 주세요'); return; }
     gbSubmit.disabled = true; gbSubmit.textContent = '등록 중…';
     try {
-      const r = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ name, message, website: gbForm.elements.website.value }) });
+      const r = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ type: 'guestbook', name, message, website: gbForm.elements.website.value }) });
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || 'failed');
       try { localStorage.setItem('gbLast', String(Date.now())); } catch (err) {}
