@@ -119,7 +119,14 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .gb-form .agree{display:flex;align-items:center;gap:10px;margin-top:16px;color:var(--ink);font-size:14.5px}
 .gb-form .agree input{width:20px;height:20px;padding:0;accent-color:var(--ac);flex:none}
 .fine{font-size:12.5px;line-height:1.6;color:var(--mute)}
-.rsvp-done{font-size:14px;color:var(--ac)}
+.sheet.center{align-items:center;padding:24px}
+.sheet.center .box{position:relative;max-width:360px;border-radius:16px;padding:34px 24px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.pop-x{position:absolute;top:8px;right:8px;margin:0}
+.sheet.center h3{font-size:20px}
+.pop-text{font-size:14.5px;line-height:1.85;color:var(--mute)}
+.pop-info{width:100%;margin:4px 0 6px;padding:14px 16px;border-top:1px dashed var(--bd);border-bottom:1px dashed var(--bd);display:flex;flex-direction:column;gap:6px;font-size:14px;text-align:left}
+.pop-info em{font-style:normal;display:inline-block;width:36px;color:var(--ac)}
+.pop-hide{min-height:44px;padding:0 12px;border:0;background:none;font-size:13.5px;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
 /* calendar */
 .cal{width:100%;background:#fff;border-radius:12px;padding:24px 14px 18px;display:flex;flex-direction:column;gap:14px}
 .cal .m{font:500 20px 'Cormorant Garamond',serif;letter-spacing:.12em;color:var(--ac)}
@@ -231,6 +238,7 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 </div>
 </div>
 <p class="dday" style="font-size:15.5px">성철 <b>♥</b> 주희의 결혼식이 <b id="dday">90일</b> 남았습니다</p>
+<button class="btn" type="button" id="rsvpBtn" aria-haspopup="dialog">참석 의사 전달하기</button>
 </section>
 
 <section class="sec rv">
@@ -292,15 +300,7 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 </div>
 </section>
 
-<section class="sec c alt rv">
-<div class="h"><p class="eyebrow">R.S.V.P</p><h2>참석 의사 전달</h2></div>
-<p class="mute" style="font-size:14.5px;line-height:1.85">귀한 걸음 해주시는 분들을 정성껏 모시고자 합니다.<br>참석 여부를 미리 알려주시면<br>준비에 큰 도움이 됩니다.</p>
-<div class="info"><p><em>일시</em>2027년 2월 20일 토요일 오전 10시 40분</p><p><em>장소</em>상록아트홀 L층 그랜드볼룸</p></div>
-<button class="btn fill" type="button" id="rsvpBtn" aria-haspopup="dialog">참석 의사 전달하기</button>
-<p class="rsvp-done" id="rsvpDone" hidden>참석 의사를 전달해 주셔서 감사합니다. 바뀌면 다시 보내주세요.</p>
-</section>
-
-<section class="sec rv" style="gap:20px">
+<section class="sec alt rv" style="gap:20px">
 <div class="h"><p class="eyebrow">Guestbook</p><h2>방명록</h2></div>
 <div class="gb-list" id="gbList"><div class="empty">두 사람에게 축하의 한마디를 남겨주세요.</div></div>
 <div class="two"><button class="btn" type="button" id="gbAll" aria-haspopup="dialog">전체보기</button><button class="btn dark" type="button" id="gbWrite" aria-haspopup="dialog">작성하기</button></div>
@@ -329,6 +329,21 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <p class="side">신부측 혼주</p>
 <div class="prow"><div><span class="n"><em>아버지</em>남기영</span><span class="t" data-phone="brideFather"></span></div><div class="ico"><a href="#" data-tel="brideFather" aria-label="신부 아버지 남기영에게 전화하기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a><a href="#" data-sms="brideFather" aria-label="신부 아버지 남기영에게 문자 보내기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg></a></div></div>
 <div class="prow"><div><span class="n"><em>어머니</em>허경아</span><span class="t" data-phone="brideMother"></span></div><div class="ico"><a href="#" data-tel="brideMother" aria-label="신부 어머니 허경아에게 전화하기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a><a href="#" data-sms="brideMother" aria-label="신부 어머니 허경아에게 문자 보내기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg></a></div></div>
+</div>
+</div>
+<div class="sheet center" id="rsvpPop" hidden>
+<div class="box" role="dialog" aria-modal="true" aria-labelledby="rsvpPopT">
+<button class="x pop-x" type="button" data-close aria-label="닫기"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<p class="eyebrow">R.S.V.P</p>
+<h3 id="rsvpPopT">참석 의사 전달</h3>
+<p class="pop-text">소중한 시간을 내어 저희 결혼식에<br>함께해 주시는 모든 분들께 감사드립니다.<br>정성껏 모실 수 있도록<br>참석 여부를 미리 알려주시면 감사하겠습니다.</p>
+<div class="pop-info">
+<p><em>신랑</em>위성철 · <em style="margin-left:4px">신부</em>남주희</p>
+<p><em>일시</em>2027년 2월 20일 토요일 오전 10시 40분</p>
+<p><em>장소</em>상록아트홀 L층 그랜드볼룸</p>
+</div>
+<button class="btn fill" type="button" id="rsvpPopGo">참석 의사 전달하기</button>
+<button class="pop-hide" type="button" id="rsvpPopHide">오늘 하루 보지 않기</button>
 </div>
 </div>
 <div class="sheet" id="rsvpSheet" hidden>
@@ -517,11 +532,24 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
   const rsvpMore = document.getElementById('rsvpMore');
   const rsvpCount = document.getElementById('rsvpCount');
   const rsvpSubmit = document.getElementById('rsvpSubmit');
-  const rsvpDone = document.getElementById('rsvpDone');
+  const rsvpPop = document.getElementById('rsvpPop');
   const picked = (n) => { const el = rsvpForm.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; };
   const clampCount = (v) => Math.max(1, Math.min(10, parseInt(v, 10) || 1));
-  const markDone = () => { rsvpDone.hidden = false; rsvpBtn.textContent = '참석 의사 다시 전달하기'; };
-  try { if (localStorage.getItem('rsvpDone')) markDone(); } catch (e) {}
+  const markDone = () => { rsvpBtn.textContent = '참석 의사 다시 전달하기'; };
+  let rsvpSent = false;
+  try { rsvpSent = !!localStorage.getItem('rsvpDone'); } catch (e) {}
+  if (rsvpSent) markDone();
+  const todayKey = () => { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); };
+  let hiddenToday = false;
+  try { hiddenToday = localStorage.getItem('rsvpPopHide') === todayKey(); } catch (e) {}
+  if (API_URL && !rsvpSent && !hiddenToday) {
+    setTimeout(() => { if ([...document.querySelectorAll('.sheet')].every(x => x.hidden)) openSheet(rsvpPop, null); }, 1500);
+  }
+  document.getElementById('rsvpPopGo').addEventListener('click', () => { closeSheet(rsvpPop); openSheet(rsvpSheet, rsvpBtn); });
+  document.getElementById('rsvpPopHide').addEventListener('click', () => {
+    try { localStorage.setItem('rsvpPopHide', todayKey()); } catch (e) {}
+    closeSheet(rsvpPop);
+  });
   rsvpForm.addEventListener('change', () => { rsvpMore.hidden = picked('attend') === 'no'; });
   document.getElementById('cntMinus').addEventListener('click', () => { rsvpCount.value = clampCount(rsvpCount.value) - 1 || 1; });
   document.getElementById('cntPlus').addEventListener('click', () => { rsvpCount.value = Math.min(10, clampCount(rsvpCount.value) + 1); });
