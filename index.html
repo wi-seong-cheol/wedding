@@ -125,7 +125,8 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stro
 .sheet.center h3{font-size:20px}
 .pop-text{font-size:14.5px;line-height:1.85;color:var(--mute)}
 .pop-info{width:100%;margin:4px 0 6px;padding:14px 16px;border-top:1px dashed var(--bd);border-bottom:1px dashed var(--bd);display:flex;flex-direction:column;gap:6px;font-size:14px;text-align:left}
-.pop-info em{font-style:normal;display:inline-block;width:36px;color:var(--ac)}
+.pop-info p{display:grid;grid-template-columns:34px minmax(0,1fr);font-size:13.5px}
+.pop-info em{font-style:normal;color:var(--ac)}
 .pop-hide{min-height:44px;padding:0 12px;border:0;background:none;font-size:13.5px;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
 /* calendar */
 .cal{width:100%;background:#fff;border-radius:12px;padding:24px 14px 18px;display:flex;flex-direction:column;gap:14px}
@@ -338,9 +339,9 @@ footer{padding:20px 0 44px;text-align:center;font:500 13px 'Cormorant Garamond',
 <h3 id="rsvpPopT">참석 의사 전달</h3>
 <p class="pop-text">소중한 시간을 내어 저희 결혼식에<br>함께해 주시는 모든 분들께 감사드립니다.<br>정성껏 모실 수 있도록<br>참석 여부를 미리 알려주시면 감사하겠습니다.</p>
 <div class="pop-info">
-<p><em>신랑</em>위성철 · <em style="margin-left:4px">신부</em>남주희</p>
-<p><em>일시</em>2027년 2월 20일 토요일 오전 10시 40분</p>
-<p><em>장소</em>상록아트홀 L층 그랜드볼룸</p>
+<p><em aria-hidden="true">♥</em><span>신랑 위성철 · 신부 남주희</span></p>
+<p><em>일시</em><span>2027년 2월 20일 (토) 오전 10시 40분</span></p>
+<p><em>장소</em><span>상록아트홀 L층 그랜드볼룸</span></p>
 </div>
 <button class="btn fill" type="button" id="rsvpPopGo">참석 의사 전달하기</button>
 <button class="pop-hide" type="button" id="rsvpPopHide">오늘 하루 보지 않기</button>
